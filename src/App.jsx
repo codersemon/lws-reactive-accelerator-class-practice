@@ -1,53 +1,25 @@
-import { useReducer } from "react";
-import AddTask from "./components/AddTask";
-import { initialTasks } from "./data/taskData";
-import { taskReducer } from "./reducers/taskReducer";
-import TaskList from "./TaskList";
+import Heading from "./components/Heading";
+import Section from "./components/Section";
 
-export default function TaskApp() {
-  const [tasks, dispatch] = useReducer(taskReducer, initialTasks);
-
-  // nextId generator function
-  const getNextId = (data) => {
-    const maxId = data?.reduce(
-      (prev, current) => (prev.id > current.id ? prev.id : current.id),
-      0
-    );
-
-    return maxId + 1;
-  };
-
-  function handleAddTask(text) {
-    dispatch({
-      type: "added",
-      id: getNextId(tasks),
-      text,
-    });
-  }
-
-  function handleChangeTask(task) {
-    dispatch({
-      type: "changed",
-      task,
-    });
-  }
-
-  function handleDeleteTask(taskId) {
-    dispatch({
-      type: "deleted",
-      id: taskId,
-    });
-  }
-
+export default function Page() {
   return (
-    <>
-      <h1>Prague itinerary</h1>
-      <AddTask onAddTask={handleAddTask} />
-      <TaskList
-        tasks={tasks}
-        onChangeTask={handleChangeTask}
-        onDeleteTask={handleDeleteTask}
-      />
-    </>
+    <Section level={1}>
+      <Heading>Title</Heading>
+      <Section level={2}>
+        <Heading>Heading</Heading>
+        <Heading>Heading</Heading>
+        <Heading>Heading</Heading>
+        <Section level={3}>
+          <Heading>Sub-heading</Heading>
+          <Heading>Sub-heading</Heading>
+          <Heading>Sub-heading</Heading>
+          <Section level={4}>
+            <Heading>Sub-sub-heading</Heading>
+            <Heading>Sub-sub-heading</Heading>
+            <Heading>Sub-sub-heading</Heading>
+          </Section>
+        </Section>
+      </Section>
+    </Section>
   );
 }
