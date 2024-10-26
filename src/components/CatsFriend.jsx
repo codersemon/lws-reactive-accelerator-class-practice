@@ -24,7 +24,7 @@ const CatsFriend = () => {
   };
 
   return (
-    <div style={{ width: "70%", margin: "auto" }}>
+    <div style={{ width: "70%", margin: "50px auto" }}>
       <nav>
         <ul style={styles.navList}>
           {cats?.map((item) => (
